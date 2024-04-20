@@ -16,3 +16,11 @@ class Consulta(models.Model):
     link = models.URLField(null=True, blank=True)
     def __str__(self):
         return self.paciente.username
+    
+
+class Documento(models.Model):
+    consulta = models.ForeignKey(Consulta, on_delete=models.DO_NOTHING)
+    titulo = models.CharField(max_length=30)
+    documento = models.FileField(upload_to='documentos')
+    def __str__(self):
+        return self.titulo
